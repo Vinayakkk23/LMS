@@ -6,9 +6,9 @@ Login | e-Library
 
 {% block content %}
 <h1>Login | e-Library</h1>
-<form method="post" class="mt-5" >
+<form method="post" class="mt-5">
     <label for="username" class="form-label">Username
-        <input type="text"name="username" id="username" class="form-control"/>
+        <input type="text" name="username" id="username" class="form-control"/>
     </label>
     <br>
     <label for="password" class="form-label">Password
@@ -16,26 +16,22 @@ Login | e-Library
     </label>
     <br>
     <input type="submit" value="Login" class="btn btn-success">
-
 </form>
 {% endblock %}
 
 {% block style %}
-    <style>
-      
-        form{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            
-            
-        }
-        h1{
-            margin-top: 64px;
-            text-align: center;
-        }
-        button{
-            color: aqua;
-        }
-    </style>
+<style>
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    h1 {
+        margin-top: 64px;
+        text-align: center;
+    }
+    button {
+        color: aqua;
+    }
+</style>
 {% endblock %}

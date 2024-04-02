@@ -10,9 +10,17 @@ class User(db.Model):
     username = db.Column(db.String(32), unique=True, nullable=False)
     passhash = db.Column(db.String(128), nullable=False)
     name = db.Column(db.String(64), nullable=False)
+    is_admin = db.Column(db.Boolean, default=False, nullable=False)
+    @property
+    def password(self):
+        raise AttributeError('password is not a readable attribute')
+    
+    @password.setter
+    def password(self, password):
+        self.passhash = generate_password_hash(password)
 
     def check_password(self, password):
-        return self.passhash == check_password_hash(self.passhash, password)
+        return check_password_hash(self.passhash, password)
 
 class Section(db.Model):
     __tablename__ = 'sections'
@@ -37,3 +45,10 @@ class Book(db.Model):
 #create database if doesn't exist
 with app.app_context():    
     db.create_all()
+
+    admin = User.query.filter_by(is_admin=True).first()
+    if not admin:
+        admin = User(username='admin', name='Admin', is_admin=True)
+        admin.password = 'admin'
+        db.session.add(admin)
+        db.session.commit()

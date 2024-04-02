@@ -8,3 +8,5 @@ app.config.from_pyfile('config.py')
 import models
 
 import routes
+
+#create admin if admin does not exits
